@@ -1,9 +1,9 @@
 
 # Usage 
 
-genlist -w dirlist1.txt -w dirlist2.txt -e php,txt,bin -t tranform1.txt -t transform2.txt -d https://www.site.com -ssrf http://zeta2.beeceptor.com/probe -of disearch
-genlist -w dirlist1.txt -w dirlist2.txt -e php,txt,bin -t tranform1.txt -t transform2.txt -d https://site.com -ssrf http://zeta2.beeceptor.com/probe -of ffuf
-genlist -w dirlist1.txt -w dirlist2.txt -e php,txt,bin -t tranform1.txt -t transform2.txt -d https://sapra.site.com -ssrf http://zeta2.beeceptor.com/probe
+* genlist -w dirlist1.txt -w dirlist2.txt -e php,txt,bin -t tranform1.txt -t transform2.txt -d https://www.site.com -ssrf http://zeta2.beeceptor.com/probe -of disearch
+* genlist -w dirlist1.txt -w dirlist2.txt -e php,txt,bin -t tranform1.txt -t transform2.txt -d https://site.com -ssrf http://zeta2.beeceptor.com/probe -of ffuf
+* genlist -w dirlist1.txt -w dirlist2.txt -e php,txt,bin -t tranform1.txt -t transform2.txt -d https://sapra.site.com -ssrf http://zeta2.beeceptor.com/probe
 
 
 # Flags
