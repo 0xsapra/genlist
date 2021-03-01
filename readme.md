@@ -8,15 +8,15 @@
 
 # Flags
 
-| Flag  | Description  |
-| ----------- | ----------- |
-| -of |  output format |
-| -w |  input wordlists |
-| -e |  extensions |
-| -t |  transform list |
-| -d |  domain to add to transform list |
-| -ssrf |  SSRF url |
-| -o |  output list name/location(default to current directory) |
+| Flag  | Description  | Example |
+| ----------- | ----------- | ----------- |
+| -of |  output format(can be ffuf or dirsearch) | -of dirsearch |
+| -w |  input wordlists | -w inputwords.txt |
+| -e |  extensions | -e php,asp |
+| -t |  transform list | -t wordstranform.txt |
+| -d |  domain to add to transform list | -d https://another.site.com |
+| -ssrf |  SSRF url | -ssrf https://zeta2.beeceptor.com/x |
+| -o |  output list name/location(default to current directory) | -o ./dirs.txt |
 
 
 
