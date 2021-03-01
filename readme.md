@@ -8,13 +8,15 @@
 
 # Flags
 
--of output format
--w input wordlists
--e extensions
--t transform list
--d domain to add to transform list
--ssrf SSRF url
--o output list name/location(default to current directory)
+| Flag  | Description  |
+| ----------- | ----------- |
+| -of |  output format |
+| -w |  input wordlists |
+| -e |  extensions |
+| -t |  transform list |
+| -d |  domain to add to transform list |
+| -ssrf |  SSRF url |
+| -o |  output list name/location(default to current directory) |
 
 
 
