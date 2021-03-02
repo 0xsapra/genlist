@@ -77,8 +77,8 @@ func main () {
 		return;
 	}
 	if SSRF == "" {
-		fmt.Println("[+] SSRF name not present. Using https://zeta2.free.beeceptor.com")
-		SSRF = "https://zeta2.free.beeceptor.com"
+		fmt.Println("[+] SSRF Domain not present. Use flag -ssrf")
+		return;
 	}
 	if _, err := validateDomain(SSRF); err != nil {
 		fmt.Println(err, "For SSRF name")
@@ -86,7 +86,6 @@ func main () {
 	}
 	if Output == "" {
 		Output = "./" + snakeCaseDomain(Domain) + ".dirlist.txt"
-		fmt.Println("[+] No output file given so outputing to ", Output)
 	}
 
 	genList(Wordlists, Transformlists, ExtensionList, Domain, SSRF, Output, OutputFormat)	
@@ -125,7 +124,7 @@ func genList(wordlists, transformlist, extensions []string, domain, ssrf, output
 			if _words, err := readWordsFromFile(wordlist); err == nil {
 				words = append(words, _words...)
 			} else {
-				fmt.Println(err)
+				// fmt.Println(err)
 			}
 		}
 	}
@@ -135,7 +134,7 @@ func genList(wordlists, transformlist, extensions []string, domain, ssrf, output
 			if _words, err := readWordsFromFile(wordlist); err == nil {
 				trasnformlist = append(trasnformlist, _words...)
 			} else {
-				fmt.Println(err)
+				// fmt.Println(err)
 			}
 		}
 	}
@@ -149,7 +148,7 @@ func genList(wordlists, transformlist, extensions []string, domain, ssrf, output
 		)
 
 		for i, _ := range(allWords) {
-			if allWords[i][0] == '/' {
+			if len(allWords[i]) > 0 && allWords[i][0] == '/' {
 				allWords[i] = allWords[i][1:]
 			}
 		}
@@ -163,7 +162,9 @@ func genList(wordlists, transformlist, extensions []string, domain, ssrf, output
 		panic("How DID You even reached here")
 	}
 
-	if done, err := writeToFile(allWords, output); done == true {
+	uniqueWords := removeDuplicateValues(allWords)
+
+	if done, err := writeToFile(uniqueWords, output); done == true {
 		return;
 	} else {
 		fmt.Println("[-]",err)
@@ -283,6 +284,15 @@ func snakeCaseDomain(domain string) string {
 
 func writeToFile(words []string, filePath string) (bool, error) {
 
+	if filePath == "-" {
+
+		for _, word := range(words) {
+			fmt.Println(word)
+		}
+
+		return true, nil;
+	}
+
 	f, err := os.Create(filePath)
 
 	if err != nil {
@@ -299,5 +309,17 @@ func writeToFile(words []string, filePath string) (bool, error) {
         }
     }
 	return true, nil
-
 }
+
+func removeDuplicateValues(words []string) []string { 
+    keys := make(map[string]bool) 
+    list := []string{} 
+  
+    for _, entry := range words { 
+        if _, value := keys[entry]; !value { 
+            keys[entry] = true
+            list = append(list, entry) 
+        } 
+    } 
+    return list 
+} 
